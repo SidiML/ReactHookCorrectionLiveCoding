@@ -2,7 +2,6 @@ const ProgressWidth = (items) => {
     // const {items} = props
     // console.log(items)
     let progress = 0
-    console.log(items)
     items.forEach(item => {
         if(item.isDone) {
             progress++

@@ -1,12 +1,14 @@
 import { TaskList } from './TaskList';
 import { Doing } from './Doing';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 
 
 function App() {
-  const [items, setItems] = useState([]);
+  const [items, setItems] = useState(getData());
   const [current, setCurrent] = useState(null);
+
+  useEffect(() => { setData(items)}, [items])
 
   return (
     <div className={`container-fluid pb-5`}>
@@ -33,6 +35,14 @@ function App() {
       </div>
     </div>
   )
+}
+const getData = () => {
+  const sorted = localStorage.getItem("items")
+  return JSON.parse(sorted) || [];
+}
+
+const setData = (items) => {
+  localStorage.setItem("items", JSON.stringify(items))
 }
 
 
